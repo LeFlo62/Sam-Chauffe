@@ -5,14 +5,15 @@ using UnityEngine;
 public class ObjectSpawnController : MonoBehaviour
 {
     public GameObject objectPrefab;
+    public int minSpawnAmount = 1;
+    public int maxSpawnAmount = 1;
 
-    public int spawnAmount = 1;
-    
+
     public Transform[] spawnPoints;
 
     private void OnDrawGizmos()
     {
-        if(objectPrefab != null)
+        if (objectPrefab != null)
         {
             Gizmos.color = objectPrefab.GetComponent<Renderer>().sharedMaterial.color;
             foreach (Transform spawnPoint in spawnPoints)
@@ -24,7 +25,9 @@ public class ObjectSpawnController : MonoBehaviour
 
     private void Start()
     {
-        if(spawnAmount > spawnPoints.Length)
+        int spawnAmount = Random.Range(minSpawnAmount, maxSpawnAmount);
+
+        if (spawnAmount > spawnPoints.Length)
         {
             spawnAmount = spawnPoints.Length;
         }
