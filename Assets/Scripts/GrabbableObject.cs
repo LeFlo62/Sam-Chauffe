@@ -9,6 +9,8 @@ namespace SamChauffe
     {
         public static float pickupForce = 10f;
 
+        public Transform grabTransform;
+
         private Transform objectGrabPointTransform;
         private Rigidbody objectRigidBody;
 
@@ -27,6 +29,9 @@ namespace SamChauffe
 
         public void Grab(Transform objectGrabPointTransform)
         {
+            this.velocity = Vector3.zero;
+            this.position = objectGrabPointTransform.position;
+
             this.objectGrabPointTransform = objectGrabPointTransform;
             objectRigidBody.velocity = Vector3.zero;
             objectRigidBody.angularVelocity = Vector3.zero;
@@ -37,10 +42,16 @@ namespace SamChauffe
             this.drag = objectRigidBody.drag;
             objectRigidBody.drag = 10f;
 
+            this.transform.SetParent(objectGrabPointTransform);
+            if(this.grabTransform != null)
+            {
+                this.transform.position = this.grabTransform.position;
+
+                this.transform.localRotation = this.grabTransform.localRotation;
+            }
+
             this.constraints = objectRigidBody.constraints;
             objectRigidBody.constraints = RigidbodyConstraints.FreezeRotation;
-
-            this.transform.SetParent(objectGrabPointTransform);
         }
 
         public void Drop()
@@ -54,17 +65,21 @@ namespace SamChauffe
 
         public void Move()
         {
-            if (Vector3.Distance(transform.position, objectGrabPointTransform.position) > 0.1f)
+            Vector3 position = grabTransform != null ? grabTransform.position : transform.position;
+
+            if (Vector3.Distance(position, objectGrabPointTransform.position) > 0.1f)
             {
-                Vector3 moveDirection = (objectGrabPointTransform.position - transform.position);
+                Vector3 moveDirection = (objectGrabPointTransform.position - position);
                 objectRigidBody.velocity = moveDirection * pickupForce;
             }
         }
 
         private void FixedUpdate()
         {
-            this.velocity = this.transform.position - this.position;
-            this.position = this.transform.position;
+            Vector3 position = grabTransform != null ? grabTransform.position : transform.position;
+
+            this.velocity = position - this.position;
+            this.position = position;
         }
     }
 }
