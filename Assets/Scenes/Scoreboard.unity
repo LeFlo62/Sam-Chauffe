@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 207448688}
   - component: {fileID: 207448687}
   - component: {fileID: 207448686}
+  - component: {fileID: 207448690}
   m_Layer: 5
   m_Name: Main Menu
   m_TagString: Untagged
@@ -229,6 +230,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &207448690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 207448685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85097d510a265174d98328252dfdb295, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 841274914}
+  highScoreText: {fileID: 491417254}
 --- !u!1 &246021261
 GameObject:
   m_ObjectHideFlags: 0
@@ -334,7 +349,6 @@ GameObject:
   - component: {fileID: 491417252}
   - component: {fileID: 491417255}
   - component: {fileID: 491417254}
-  - component: {fileID: 491417253}
   m_Layer: 5
   m_Name: Meilleur score
   m_TagString: Untagged
@@ -361,20 +375,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -369}
   m_SizeDelta: {x: -726, y: -223}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &491417253
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 491417251}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85097d510a265174d98328252dfdb295, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scoreText: {fileID: 0}
-  highScoreText: {fileID: 491417254}
 --- !u!114 &491417254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -575,7 +575,6 @@ GameObject:
   - component: {fileID: 841274913}
   - component: {fileID: 841274915}
   - component: {fileID: 841274914}
-  - component: {fileID: 841274916}
   m_Layer: 5
   m_Name: Score
   m_TagString: Untagged
@@ -701,20 +700,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 841274912}
   m_CullTransparentMesh: 1
---- !u!114 &841274916
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 841274912}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85097d510a265174d98328252dfdb295, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scoreText: {fileID: 841274914}
-  highScoreText: {fileID: 0}
 --- !u!1 &924871106
 GameObject:
   m_ObjectHideFlags: 0
