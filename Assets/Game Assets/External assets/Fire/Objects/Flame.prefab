@@ -9698,6 +9698,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleStopTime: 2
+  points: 0.25
 --- !u!1 &1706519164850726
 GameObject:
   m_ObjectHideFlags: 0
@@ -14552,6 +14553,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleStopTime: 2
+  points: 0.25
 --- !u!1 &1878652760548056
 GameObject:
   m_ObjectHideFlags: 0
@@ -19406,6 +19408,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleStopTime: 2
+  points: 0.25
 --- !u!1 &1911683160194432
 GameObject:
   m_ObjectHideFlags: 0
@@ -24260,3 +24263,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleStopTime: 2
+  points: 0.25
