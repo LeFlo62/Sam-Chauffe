@@ -11,7 +11,7 @@ namespace SamChauffe
         private bool isStopping = false;
 
         void Start()
-        {
+        {_
             particleSystem = GetComponentInChildren<ParticleSystem>();
         }
 
@@ -49,8 +49,8 @@ namespace SamChauffe
             isStopping = false;
 
             // Manage score after the particule system stops emitting particules
-            ScoreManager.Score += points;
-            Debug.Log(ScoreManager.Score);
+            ScoreManager.score += points;
+            Debug.Log(ScoreManager.score);
         }
     }
 }
