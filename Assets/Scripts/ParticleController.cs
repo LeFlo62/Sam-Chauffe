@@ -1,53 +1,56 @@
 using UnityEngine;
 using System.Collections; 
 
-public class ParticleController : MonoBehaviour
+namespace SamChauffe
 {
-    public float particleStopTime = 2f;
-    public double points = 0.25;
-    private ParticleSystem particleSystem;
-    private bool isStopping = false;
-
-    void Start()
+    public class ParticleController : MonoBehaviour
     {
-        particleSystem = GetComponent<ParticleSystem>();
-    }
+        public float particleStopTime = 2f;
+        public double points = 0.25;
+        private ParticleSystem particleSystem;
+        private bool isStopping = false;
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.E) && !isStopping)
+        void Start()
         {
-            StartCoroutine(StopParticlesOverTime());
-        }
-    }
-
-    IEnumerator StopParticlesOverTime()
-    {
-        isStopping = true;
-
-        float elapsedTime = 0f;
-        float startEmissionRate = particleSystem.emission.rateOverTime.constant;
-
-        while (elapsedTime < particleStopTime)
-        {
-            float t = elapsedTime / particleStopTime;
-            float currentEmissionRate = Mathf.Lerp(startEmissionRate, 0f, t);
-
-            ParticleSystem.EmissionModule emissionModule = particleSystem.emission;
-            emissionModule.rateOverTime = currentEmissionRate;
-
-            elapsedTime += Time.deltaTime;
-            yield return null;
+            particleSystem = GetComponent<ParticleSystem>();
         }
 
-        // Ensure emission rate is zero when the loop ends
-        ParticleSystem.EmissionModule finalEmissionModule = particleSystem.emission;
-        finalEmissionModule.rateOverTime = 0f;
+        void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.E) && !isStopping)
+            {
+                StartCoroutine(StopParticlesOverTime());
+            }
+        }
 
-        isStopping = false;
+        IEnumerator StopParticlesOverTime()
+        {
+            isStopping = true;
 
-        // Manage score after the particule system stops emitting particules
-        ScoreManager.Score += points;
-        Debug.Log(ScoreManager.Score);
+            float elapsedTime = 0f;
+            float startEmissionRate = particleSystem.emission.rateOverTime.constant;
+
+            while (elapsedTime < particleStopTime)
+            {
+                float t = elapsedTime / particleStopTime;
+                float currentEmissionRate = Mathf.Lerp(startEmissionRate, 0f, t);
+
+                ParticleSystem.EmissionModule emissionModule = particleSystem.emission;
+                emissionModule.rateOverTime = currentEmissionRate;
+
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+
+            // Ensure emission rate is zero when the loop ends
+            ParticleSystem.EmissionModule finalEmissionModule = particleSystem.emission;
+            finalEmissionModule.rateOverTime = 0f;
+
+            isStopping = false;
+
+            // Manage score after the particule system stops emitting particules
+            ScoreManager.Score += points;
+            Debug.Log(ScoreManager.Score);
+        }
     }
 }

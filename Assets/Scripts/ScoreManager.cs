@@ -3,32 +3,35 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class ScoreManager : MonoBehaviour
+namespace SamChauffe
 {
-    private static double _score = 0;
-    public static double Score
+    public class ScoreManager : MonoBehaviour
     {
-        get { return _score; }
-        set { _score = value; }
-    }
-    
-    public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI highScoreText;
+        private static double _score = 0;
+        public static double Score
+        {
+            get { return _score; }
+            set { _score = value; }
+        }
+
+        public TextMeshProUGUI scoreText;
+        public TextMeshProUGUI highScoreText;
 
 
-    int score = 0;
-    int highscore = 0;
+        int score = 0;
+        int highscore = 0;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        scoreText.text = score.ToString() + " points";
-        highScoreText.text = "Meilleur score : " + highscore.ToString();
-    }
+        // Start is called before the first frame update
+        void Start()
+        {
+            scoreText.text = score.ToString() + " points";
+            highScoreText.text = "Meilleur score : " + highscore.ToString();
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
+        // Update is called once per frame
+        void Update()
+        {
 
+        }
     }
 }
