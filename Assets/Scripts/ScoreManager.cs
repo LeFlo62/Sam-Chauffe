@@ -5,6 +5,13 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
+    private static double _score = 0;
+    public static double Score
+    {
+        get { return _score; }
+        set { _score = value; }
+    }
+    
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI highScoreText;
 
