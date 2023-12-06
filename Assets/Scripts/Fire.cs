@@ -3,21 +3,21 @@ using System.Collections;
 
 namespace SamChauffe
 {
-    public class ParticleController : MonoBehaviour
+    public class Fire : MonoBehaviour
     {
         public float particleStopTime = 2f;
-        public double points = 0.25;
+        public double points = 1;
         private ParticleSystem particleSystem;
         private bool isStopping = false;
 
         void Start()
         {
-            particleSystem = GetComponent<ParticleSystem>();
+            particleSystem = GetComponentInChildren<ParticleSystem>();
         }
 
-        void Update()
+        public void Extinguish()
         {
-            if (Input.GetKeyDown(KeyCode.E) && !isStopping)
+            if (!isStopping)
             {
                 StartCoroutine(StopParticlesOverTime());
             }
@@ -25,7 +25,6 @@ namespace SamChauffe
 
         IEnumerator StopParticlesOverTime()
         {
-            isStopping = true;
 
             float elapsedTime = 0f;
             float startEmissionRate = particleSystem.emission.rateOverTime.constant;
@@ -45,6 +44,7 @@ namespace SamChauffe
             // Ensure emission rate is zero when the loop ends
             ParticleSystem.EmissionModule finalEmissionModule = particleSystem.emission;
             finalEmissionModule.rateOverTime = 0f;
+            particleSystem.Stop();
 
             isStopping = false;
 

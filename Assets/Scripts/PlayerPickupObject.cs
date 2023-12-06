@@ -42,6 +42,18 @@ namespace SamChauffe
                 {
                     grabbedObject.Move();
                 }
+                if (Input.GetMouseButton(1))
+                {
+                    Debug.Log("Interact");
+                    InteractableObject[] interactables = grabbedObject.GetComponentsInParent<InteractableObject>();
+                    if(interactables != null)
+                    {
+                        foreach (var item in interactables)
+                        {
+                            item.Interact();
+                        }
+                    }
+                }
             }
 
         }
