@@ -24,7 +24,7 @@ namespace SamChauffe
         // Start is called before the first frame update
         void Start()
         {
-            scoreText.text = score.ToString() + " points";
+            scoreText.text = "Votre score : " + score.ToString();
             highScoreText.text = "Meilleur score : " + highscore.ToString();
         }
 
