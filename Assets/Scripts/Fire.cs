@@ -11,7 +11,7 @@ namespace SamChauffe
         private bool isStopping = false;
 
         void Start()
-        {_
+        {
             particleSystem = GetComponentInChildren<ParticleSystem>();
         }
 
