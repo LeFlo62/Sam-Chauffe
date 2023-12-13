@@ -70,7 +70,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleStopTime: 2
-  points: 0.25
+  points: 1
 --- !u!1001 &7035660684835878381
 PrefabInstance:
   m_ObjectHideFlags: 0

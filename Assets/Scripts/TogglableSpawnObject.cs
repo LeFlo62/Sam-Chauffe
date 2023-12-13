@@ -31,7 +31,10 @@ namespace SamChauffe
             }
             else
             {
-                Instantiate(objectOff, transform.position, transform.rotation, transform);
+                if(objectOff != null)
+                {
+                    Instantiate(objectOff, transform.position, transform.rotation, transform);
+                }
             }
         }
     }
