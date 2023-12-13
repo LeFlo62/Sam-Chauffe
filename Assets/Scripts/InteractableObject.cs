@@ -7,5 +7,7 @@ namespace SamChauffe
     public interface InteractableObject
     {
         void Interact();
+
+        void StopInteracting();
     }
 }

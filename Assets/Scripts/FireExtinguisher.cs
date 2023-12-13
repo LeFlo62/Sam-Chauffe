@@ -7,27 +7,35 @@ namespace SamChauffe
 {
     public class FireExtinguisher : MonoBehaviour, InteractableObject
     {
-        public Transform spitTransform;
         [Range(0f, 10f)]
         public float spitDistance;
         public LayerMask fireMask;
-        public ParticleSystem particleSystem;
+        public ParticleSystem snowParticles;
 
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawRay(spitTransform.position, spitTransform.forward * spitDistance);
+            Gizmos.DrawRay(snowParticles.transform.position, snowParticles.transform.forward * spitDistance);
         }
 
         public void Interact()
         {
-            if (Physics.Raycast(particleSystem.transform.position, particleSystem.transform.forward, out RaycastHit hit, Mathf.Infinity, fireMask))
+            if (!snowParticles.isEmitting)
+            {
+                snowParticles.Play();
+            }
+            if (Physics.Raycast(snowParticles.transform.position, snowParticles.transform.forward, out RaycastHit hit, Mathf.Infinity, fireMask))
             {
                 if (hit.transform.TryGetComponent(out Fire fire))
                 {
                     fire.Extinguish();
                 }
             }
+        }
+
+        public void StopInteracting()
+        {
+            snowParticles.Stop();
         }
     }
 }

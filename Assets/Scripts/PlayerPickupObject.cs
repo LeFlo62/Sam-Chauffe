@@ -33,18 +33,13 @@ namespace SamChauffe
             }
             else
             {
-                if (Input.GetMouseButtonUp(0))
-                {
-                    grabbedObject.Drop();
-                    grabbedObject = null;
-                }
                 if (Input.GetMouseButton(0))
                 {
                     grabbedObject.Move();
                 }
-                if (Input.GetMouseButton(1) || Input.GetKeyDown(KeyCode.E))
+
+                if (Input.GetMouseButton(1) || Input.GetKey(KeyCode.E))
                 {
-                    Debug.Log("Interact");
                     InteractableObject[] interactables = grabbedObject.GetComponentsInParent<InteractableObject>();
                     if(interactables != null)
                     {
@@ -53,6 +48,30 @@ namespace SamChauffe
                             item.Interact();
                         }
                     }
+                } else
+                {
+                    InteractableObject[] interactables = grabbedObject.GetComponentsInParent<InteractableObject>();
+                    if (interactables != null)
+                    {
+                        foreach (var item in interactables)
+                        {
+                            item.StopInteracting();
+                        }
+                    }
+                }
+                if (Input.GetMouseButtonUp(0))
+                {
+                    InteractableObject[] interactables = grabbedObject.GetComponentsInParent<InteractableObject>();
+                    if (interactables != null)
+                    {
+                        foreach (var item in interactables)
+                        {
+                            item.StopInteracting();
+                        }
+                    }
+
+                    grabbedObject.Drop();
+                    grabbedObject = null;
                 }
             }
 

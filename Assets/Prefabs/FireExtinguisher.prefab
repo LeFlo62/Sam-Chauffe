@@ -8090,12 +8090,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7246df3742f5a3f408a238d1bbefbaa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spitTransform: {fileID: 8181961610619073390}
   spitDistance: 3
   fireMask:
     serializedVersion: 2
     m_Bits: 128
-  particleSystem: {fileID: 8908655949122687164}
+  snowParticles: {fileID: 8908655949122687164}
 --- !u!1 &4901387372179841985
 GameObject:
   m_ObjectHideFlags: 0
@@ -8107,9 +8106,8 @@ GameObject:
   - component: {fileID: 8758228416949897091}
   - component: {fileID: 8908655949122687164}
   - component: {fileID: 2007299339407895354}
-  - component: {fileID: 6325137645646446585}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: SnowParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8145,9 +8143,9 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -8203,7 +8201,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -8213,7 +8211,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.0001
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -8967,7 +8965,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 200
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -12925,20 +12923,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &6325137645646446585
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4901387372179841985}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfd4e5144487c4eabb8e7cb23659fe73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxParticles: 200
-  emissionRateIncreaseSpeed: 10
 --- !u!1 &5664073785716033057
 GameObject:
   m_ObjectHideFlags: 0
