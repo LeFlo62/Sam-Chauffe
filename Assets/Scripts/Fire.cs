@@ -7,12 +7,12 @@ namespace SamChauffe
     {
         public float particleStopTime = 2f;
         public double points = 1;
-        private ParticleSystem particleSystem;
+        private ParticleSystem fireParticles;
         private bool isStopping = false;
 
         void Start()
         {
-            particleSystem = GetComponentInChildren<ParticleSystem>();
+            fireParticles = GetComponentInChildren<ParticleSystem>();
         }
 
         public void Extinguish()
@@ -27,14 +27,14 @@ namespace SamChauffe
         {
 
             float elapsedTime = 0f;
-            float startEmissionRate = particleSystem.emission.rateOverTime.constant;
+            float startEmissionRate = fireParticles.emission.rateOverTime.constant;
 
             while (elapsedTime < particleStopTime)
             {
                 float t = elapsedTime / particleStopTime;
                 float currentEmissionRate = Mathf.Lerp(startEmissionRate, 0f, t);
 
-                ParticleSystem.EmissionModule emissionModule = particleSystem.emission;
+                ParticleSystem.EmissionModule emissionModule = fireParticles.emission;
                 emissionModule.rateOverTime = currentEmissionRate;
 
                 elapsedTime += Time.deltaTime;
@@ -42,9 +42,9 @@ namespace SamChauffe
             }
 
             // Ensure emission rate is zero when the loop ends
-            ParticleSystem.EmissionModule finalEmissionModule = particleSystem.emission;
+            ParticleSystem.EmissionModule finalEmissionModule = fireParticles.emission;
             finalEmissionModule.rateOverTime = 0f;
-            particleSystem.Stop();
+            fireParticles.Stop();
 
             isStopping = false;
 
