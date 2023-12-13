@@ -42,7 +42,7 @@ namespace SamChauffe
                 {
                     grabbedObject.Move();
                 }
-                if (Input.GetMouseButton(1))
+                if (Input.GetMouseButton(1) || Input.GetKeyDown(KeyCode.E))
                 {
                     Debug.Log("Interact");
                     InteractableObject[] interactables = grabbedObject.GetComponentsInParent<InteractableObject>();

@@ -8,11 +8,10 @@ namespace SamChauffe
     public class FireExtinguisher : MonoBehaviour, InteractableObject
     {
         public Transform spitTransform;
-
         [Range(0f, 10f)]
         public float spitDistance;
-
         public LayerMask fireMask;
+        public ParticleSystem particleSystem;
 
         private void OnDrawGizmos()
         {
@@ -22,9 +21,9 @@ namespace SamChauffe
 
         public void Interact()
         {
-            if (Physics.Raycast(spitTransform.position, spitTransform.forward, out RaycastHit hit, spitDistance, fireMask))
+            if (Physics.Raycast(particleSystem.transform.position, particleSystem.transform.forward, out RaycastHit hit, Mathf.Infinity, fireMask))
             {
-               if (hit.transform.TryGetComponent(out Fire fire))
+                if (hit.transform.TryGetComponent(out Fire fire))
                 {
                     fire.Extinguish();
                 }

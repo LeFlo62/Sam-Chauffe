@@ -5,7 +5,7 @@ namespace SamChauffe
 {
     public class Fire : MonoBehaviour
     {
-        public float particleStopTime = 2f;
+        public float particleStopTime = 0.5f;
         public double points = 1;
         private ParticleSystem fireParticles;
         private bool isStopping = false;
@@ -25,14 +25,13 @@ namespace SamChauffe
 
         IEnumerator StopParticlesOverTime()
         {
-
             float elapsedTime = 0f;
             float startEmissionRate = fireParticles.emission.rateOverTime.constant;
 
             while (elapsedTime < particleStopTime)
             {
                 float t = elapsedTime / particleStopTime;
-                float currentEmissionRate = Mathf.Lerp(startEmissionRate, 0f, t);
+                float currentEmissionRate = Mathf.Lerp(startEmissionRate, 5f, t);
 
                 ParticleSystem.EmissionModule emissionModule = fireParticles.emission;
                 emissionModule.rateOverTime = currentEmissionRate;
@@ -45,8 +44,6 @@ namespace SamChauffe
             ParticleSystem.EmissionModule finalEmissionModule = fireParticles.emission;
             finalEmissionModule.rateOverTime = 0f;
             fireParticles.Stop();
-
-            isStopping = false;
 
             // Manage score after the particule system stops emitting particules
             ScoreManager.score += points;
