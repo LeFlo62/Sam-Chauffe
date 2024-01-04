@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 namespace SamChauffe
 {
-    public class FireExtinguisher : MonoBehaviour, InteractableObject
+    public class FireExtinguisher : MonoBehaviour, GrabInteractableObject
     {
         [Range(0f, 10f)]
         public float spitDistance;

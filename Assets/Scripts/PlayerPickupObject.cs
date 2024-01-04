@@ -11,7 +11,6 @@ namespace SamChauffe
 
         public Transform playerCameraTransform;
         public Transform objectGrabPointTransform;
-        public LayerMask pickupLayerMask;
 
         private GrabbableObject grabbedObject;
 
@@ -22,7 +21,7 @@ namespace SamChauffe
             {
                 if (Input.GetMouseButtonDown(0))
                 {
-                    if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit hit, pickupRange, pickupLayerMask))
+                    if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit hit, pickupRange))
                     {
                         if (hit.transform.TryGetComponent(out grabbedObject))
                         {
@@ -40,35 +39,14 @@ namespace SamChauffe
 
                 if (Input.GetMouseButton(1) || Input.GetKey(KeyCode.E))
                 {
-                    InteractableObject[] interactables = grabbedObject.GetComponentsInParent<InteractableObject>();
-                    if(interactables != null)
-                    {
-                        foreach (var item in interactables)
-                        {
-                            item.Interact();
-                        }
-                    }
+                    grabbedObject.Activate();
                 } else
                 {
-                    InteractableObject[] interactables = grabbedObject.GetComponentsInParent<InteractableObject>();
-                    if (interactables != null)
-                    {
-                        foreach (var item in interactables)
-                        {
-                            item.StopInteracting();
-                        }
-                    }
+                    grabbedObject.Deactivate();
                 }
                 if (Input.GetMouseButtonUp(0))
                 {
-                    InteractableObject[] interactables = grabbedObject.GetComponentsInParent<InteractableObject>();
-                    if (interactables != null)
-                    {
-                        foreach (var item in interactables)
-                        {
-                            item.StopInteracting();
-                        }
-                    }
+                    grabbedObject.Deactivate();
 
                     grabbedObject.Drop();
                     grabbedObject = null;

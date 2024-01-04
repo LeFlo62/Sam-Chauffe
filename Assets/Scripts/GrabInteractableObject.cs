@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SamChauffe
 {
-    public interface InteractableObject
+    public interface GrabInteractableObject
     {
         void Interact();
 
