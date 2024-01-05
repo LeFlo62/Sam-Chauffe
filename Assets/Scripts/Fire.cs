@@ -15,7 +15,7 @@ namespace SamChauffe
             fireParticles = GetComponentInChildren<ParticleSystem>();
         }
 
-        public void Extinguish()
+        public virtual void Extinguish()
         {
             if (!isStopping)
             {
@@ -25,6 +25,7 @@ namespace SamChauffe
 
         IEnumerator StopParticlesOverTime()
         {
+            isStopping = true;
             float elapsedTime = 0f;
             float startEmissionRate = fireParticles.emission.rateOverTime.constant;
 
@@ -47,7 +48,7 @@ namespace SamChauffe
 
             // Manage score after the particule system stops emitting particules
             ScoreManager.score += points;
-            Debug.Log(ScoreManager.score);
+            Debug.Log("Score: " + ScoreManager.score);
         }
     }
 }
