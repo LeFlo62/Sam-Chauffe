@@ -19,6 +19,7 @@ namespace SamChauffe
         {
             if (!isStopping)
             {
+                ScoreManager.score += points;
                 StartCoroutine(StopParticlesOverTime());
             }
         }
@@ -45,10 +46,6 @@ namespace SamChauffe
             ParticleSystem.EmissionModule finalEmissionModule = fireParticles.emission;
             finalEmissionModule.rateOverTime = 0f;
             fireParticles.Stop();
-
-            // Manage score after the particule system stops emitting particules
-            ScoreManager.score += points;
-            Debug.Log("Score: " + ScoreManager.score);
         }
     }
 }
