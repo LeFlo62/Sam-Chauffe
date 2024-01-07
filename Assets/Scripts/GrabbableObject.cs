@@ -23,22 +23,29 @@ namespace SamChauffe
         private Vector3 position;
 
         private bool grabbed = false;
+        private bool vrInteract = false;
 
         public void Awake()
         {
             this.objectRigidBody = GetComponent<Rigidbody>();
         }
 
+        public void Update()
+        {
+            if(vrInteract)
+            {
+                Activate();
+            }
+        }
+
         public void EnableGrabbed()
         {
             grabbed = true;
-            Debug.Log("GRABBED");
         }
 
         public void DisableGrabbed()
         {
             grabbed = false;
-            Debug.Log("UNGRABBED");
         }
 
         public void Grab(Transform objectGrabPointTransform)
@@ -137,6 +144,18 @@ namespace SamChauffe
             {
                 outline.enabled = false;
             }
+        }
+
+        public void VrActivate()
+        {
+            vrInteract = true;
+            Activate();
+        }
+
+        public void VrDeactivate()
+        {
+            vrInteract = false;
+            Deactivate();
         }
     }
 }

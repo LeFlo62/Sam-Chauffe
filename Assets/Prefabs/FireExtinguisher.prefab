@@ -13094,7 +13094,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2024289240313678663}
         m_TargetAssemblyTypeName: SamChauffe.GrabbableObject, Assembly-CSharp
-        m_MethodName: Deactivate
+        m_MethodName: DisableGrabbed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13106,7 +13106,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 2024289240313678663}
         m_TargetAssemblyTypeName: SamChauffe.GrabbableObject, Assembly-CSharp
-        m_MethodName: DisableGrabbed
+        m_MethodName: VrDeactivate
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13133,7 +13133,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2024289240313678663}
         m_TargetAssemblyTypeName: SamChauffe.GrabbableObject, Assembly-CSharp
-        m_MethodName: Activate
+        m_MethodName: VrActivate
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13148,7 +13148,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2024289240313678663}
         m_TargetAssemblyTypeName: SamChauffe.GrabbableObject, Assembly-CSharp
-        m_MethodName: Deactivate
+        m_MethodName: VrDeactivate
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
