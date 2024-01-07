@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Profiling;
 using UnityEngine;
 
 namespace SamChauffe
@@ -11,8 +12,8 @@ namespace SamChauffe
 
         public Transform playerCameraTransform;
         public Transform objectGrabPointTransform;
-        public LayerMask pickupLayerMask;
 
+        private GrabbableObject hoveredObject;
         private GrabbableObject grabbedObject;
 
         // Update is called once per frame
@@ -20,15 +21,26 @@ namespace SamChauffe
         {
             if (grabbedObject == null)
             {
-                if (Input.GetMouseButtonDown(0))
+                if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit hit, pickupRange))
                 {
-                    if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit hit, pickupRange, pickupLayerMask))
+                    if (hit.transform.TryGetComponent(out hoveredObject))
                     {
-                        if (hit.transform.TryGetComponent(out grabbedObject))
+                        hoveredObject.HoverEnter();
+
+                        if (Input.GetMouseButtonDown(0))
                         {
+                            grabbedObject = hoveredObject;
+                            hoveredObject = null;
                             grabbedObject.Grab(objectGrabPointTransform);
                         }
                     }
+                }
+
+                var grabbables = FindObjectsOfType<GrabbableObject>();
+                foreach (var grabbable in grabbables)
+                {
+                    if (grabbable == hoveredObject) continue;
+                    grabbable.HoverExit();
                 }
             }
             else
@@ -40,35 +52,14 @@ namespace SamChauffe
 
                 if (Input.GetMouseButton(1) || Input.GetKey(KeyCode.E))
                 {
-                    InteractableObject[] interactables = grabbedObject.GetComponentsInParent<InteractableObject>();
-                    if(interactables != null)
-                    {
-                        foreach (var item in interactables)
-                        {
-                            item.Interact();
-                        }
-                    }
+                    grabbedObject.Activate();
                 } else
                 {
-                    InteractableObject[] interactables = grabbedObject.GetComponentsInParent<InteractableObject>();
-                    if (interactables != null)
-                    {
-                        foreach (var item in interactables)
-                        {
-                            item.StopInteracting();
-                        }
-                    }
+                    grabbedObject.Deactivate();
                 }
                 if (Input.GetMouseButtonUp(0))
                 {
-                    InteractableObject[] interactables = grabbedObject.GetComponentsInParent<InteractableObject>();
-                    if (interactables != null)
-                    {
-                        foreach (var item in interactables)
-                        {
-                            item.StopInteracting();
-                        }
-                    }
+                    grabbedObject.Deactivate();
 
                     grabbedObject.Drop();
                     grabbedObject = null;

@@ -13,12 +13,12 @@ namespace SamChauffe
         private AudioSource audioSource;
         
         // Variables for fire propagation
-        private float spreadDelay = 5.0f;
+        public float spreadDelay = 10.0f;
         private float elapsedTime = 0f;
         public float minDistanceBetweenFlames = 2f;
         private float maxRandomOffsetX = 3f;
         private float maxRandomOffsetZ = 3f;
-        private int numberOfFlames = 5;
+        public int numberOfFlames = 2;
 
         void Start()
         {
@@ -82,16 +82,18 @@ namespace SamChauffe
             return false;
         }
 
-        public void Extinguish()
+        public virtual void Extinguish()
         {
             if (!isStopping)
-            {
+            {   
+                ScoreManager.score += 10;
                 StartCoroutine(StopParticlesOverTime());
             }
         }
 
         IEnumerator StopParticlesOverTime()
         {
+            isStopping = true;
             float elapsedTime = 0f;
             float startEmissionRate = fireParticles.emission.rateOverTime.constant;
 
@@ -119,8 +121,6 @@ namespace SamChauffe
             //     audioSource.Stop();
             // }
             // Manage score after the particule system stops emitting particules
-            ScoreManager.score += 10;
-            Debug.Log(ScoreManager.score);
         }
     }
 }

@@ -1,14 +1,22 @@
+using OpenCover.Framework.Model;
 using System.Collections;
 using System.Collections.Generic;
-using SamChauffe;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class TutorialFire : Fire
+namespace SamChauffe
 {
-    public DoorControler door;
-   public void Extinguish()
+    public class TutorialFire : Fire
     {
-        base.Extinguish();
-        door.openDoor();
+
+        public GameObject door;
+
+        public override void Extinguish()
+        {
+            base.Extinguish();
+            door.transform.rotation = Quaternion.Euler(0, 90, 0);
+            //disable collision
+            door.GetComponentInChildren<Collider>().enabled = false;
+        }
     }
 }

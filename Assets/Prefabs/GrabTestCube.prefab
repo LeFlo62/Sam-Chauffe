@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7893003421375292586}
   - component: {fileID: 2317045682009010843}
   - component: {fileID: 2733976460091267130}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: GrabTestCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,6 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3d074f7a7521ca49a3fc65eab4330e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  grabTransform: {fileID: 0}
 --- !u!54 &2733976460091267130
 Rigidbody:
   m_ObjectHideFlags: 0

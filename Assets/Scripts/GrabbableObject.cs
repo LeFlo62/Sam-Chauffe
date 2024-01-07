@@ -81,5 +81,45 @@ namespace SamChauffe
             this.velocity = position - this.position;
             this.position = position;
         }
+
+        public void Activate()
+        {
+            GrabInteractableObject[] interactables = GetComponentsInParent<GrabInteractableObject>();
+            if (interactables != null)
+            {
+                foreach (var item in interactables)
+                {
+                    item.Interact();
+                }
+            }
+        }
+
+        public void Deactivate()
+        {
+            GrabInteractableObject[] interactables = GetComponentsInParent<GrabInteractableObject>();
+            if (interactables != null)
+            {
+                foreach (var item in interactables)
+                {
+                    item.StopInteracting();
+                }
+            }
+        }
+
+        public void HoverEnter()
+        {
+            if (gameObject.TryGetComponent<Outline>(out Outline outline))
+            {
+                outline.enabled = true;
+            }
+        }
+
+        public void HoverExit()
+        {
+            if (gameObject.TryGetComponent<Outline>(out Outline outline))
+            {
+                outline.enabled = false;
+            }
+        }
     }
 }
