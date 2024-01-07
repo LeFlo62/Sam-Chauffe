@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace SamChauffe
 {
@@ -81,23 +78,17 @@ namespace SamChauffe
 
         void OnTriggerEnter(Collider collision)
         {
-            Fire fireScript = collision.gameObject.GetComponent<Fire>();
-            FireAlarmController fireAlarmController = collision.gameObject.GetComponent<FireAlarmController>();
-            
-            if (fireScript && currentHealth>19)
+            if(collision.gameObject.TryGetComponent<Fire>(out Fire fire))
             {
                 currentHealth -= fireDamage;
+                currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
                 healthBarController.UpdateHealth(currentHealth);
-            } 
-            else if(fireScript && currentHealth<20)
-            {
-                ScoreManager.score = 0;
-                Debug.Log(ScoreManager.score);
-                // Change scene to score board
-            } 
-            else if (fireAlarmController)
-            {
-                fireAlarmController.launchAlarm();
+                if(currentHealth == 0)
+                {
+                    ScoreManager.score = 0;
+                    // Change scene to score board
+                    SceneManager.LoadScene(1);
+                }
             }
         }
     }

@@ -4,15 +4,14 @@ using UnityEngine;
 
 namespace SamChauffe
 {
-    public class FireAlarmController : MonoBehaviour
+    public class FireAlarm : Interactable
     {
-        private AudioSource audioSource;
+        public AudioSource audioSource;
 
-        public void launchAlarm()
+        public override void Interact()
         {
-            if(!GlobalVariables.isAlarmRinging)
+            if (!GlobalVariables.isAlarmRinging)
             {
-                audioSource = GetComponent<AudioSource>();
                 audioSource.Play();
                 GlobalVariables.isAlarmRinging = true;
             }

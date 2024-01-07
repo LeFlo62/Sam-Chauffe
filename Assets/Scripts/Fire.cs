@@ -13,12 +13,12 @@ namespace SamChauffe
         private AudioSource audioSource;
         
         // Variables for fire propagation
-        private float spreadDelay = 5.0f;
+        public float spreadDelay = 10.0f;
         private float elapsedTime = 0f;
         public float minDistanceBetweenFlames = 2f;
         private float maxRandomOffsetX = 3f;
         private float maxRandomOffsetZ = 3f;
-        private int numberOfFlames = 5;
+        public int numberOfFlames = 2;
 
         void Start()
         {
