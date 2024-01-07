@@ -17,8 +17,17 @@ namespace SamChauffe
         {
             if (objectOn != null)
             {
-                Gizmos.color = objectOn.GetComponent<Renderer>().sharedMaterial.color;
-                Gizmos.DrawWireMesh(objectOn.GetComponent<MeshFilter>().sharedMesh, transform.position, transform.rotation, transform.localScale);
+                Renderer renderer = objectOn.GetComponent<Renderer>();
+                if(renderer != null)
+                {
+                    MeshFilter meshFilter = objectOn.GetComponent<MeshFilter>();
+                    Gizmos.color = renderer.sharedMaterial.color;
+                    Gizmos.DrawWireMesh(meshFilter.sharedMesh, transform.position, transform.rotation, transform.localScale);
+                } else
+                {
+                    Gizmos.DrawWireCube(transform.position, transform.localScale);
+                }
+
             }
         }
 
