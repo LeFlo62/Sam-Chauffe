@@ -28,12 +28,18 @@ namespace SamChauffe
 
         [HideInInspector]
         public bool canMove = true;
+        public HealthBarController healthBarController;
+        public int maxHealth = 100;
+        public int fireDamage = 20;
+        private int currentHealth; 
 
         void Start()
         {
             this.characterController = GetComponent<CharacterController>();
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+            currentHealth = maxHealth;
+            healthBarController.SetMaxHealth(maxHealth);
         }
 
         void Update()
@@ -70,6 +76,28 @@ namespace SamChauffe
                 rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
                 playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
                 transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
+            }
+        }
+
+        void OnTriggerEnter(Collider collision)
+        {
+            Fire fireScript = collision.gameObject.GetComponent<Fire>();
+            FireAlarmController fireAlarmController = collision.gameObject.GetComponent<FireAlarmController>();
+            
+            if (fireScript && currentHealth>19)
+            {
+                currentHealth -= fireDamage;
+                healthBarController.UpdateHealth(currentHealth);
+            } 
+            else if(fireScript && currentHealth<20)
+            {
+                ScoreManager.score = 0;
+                Debug.Log(ScoreManager.score);
+                // Change scene to score board
+            } 
+            else if (fireAlarmController)
+            {
+                fireAlarmController.launchAlarm();
             }
         }
     }

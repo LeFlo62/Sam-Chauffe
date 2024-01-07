@@ -20,11 +20,5 @@ namespace SamChauffe
             scoreText.text = "Votre score : " + score.ToString();
             highScoreText.text = "Meilleur score : " + highscore.ToString();
         }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
     }
 }
