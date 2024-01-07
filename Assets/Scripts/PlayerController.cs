@@ -25,21 +25,13 @@ namespace SamChauffe
 
         [HideInInspector]
         public bool canMove = true;
-        public HealthBarController healthBarController;
-        public int maxHealth = 100;
-        public int fireDamage = 20;
-        private int currentHealth; 
+        
 
         void Start()
         {
             this.characterController = GetComponent<CharacterController>();
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-            currentHealth = maxHealth;
-            if (healthBarController)
-            {
-                healthBarController.SetMaxHealth(maxHealth);
-            }
         }
 
         void Update()
@@ -79,23 +71,6 @@ namespace SamChauffe
             }
         }
 
-        void OnTriggerEnter(Collider collision)
-        {
-            if (healthBarController)
-            {
-                if (collision.gameObject.TryGetComponent<Fire>(out Fire fire))
-                {
-                    currentHealth -= fireDamage;
-                    currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-                    healthBarController.UpdateHealth(currentHealth);
-                    if (currentHealth == 0)
-                    {
-                        ScoreManager.score = 0;
-                        // Change scene to score board
-                        SceneManager.LoadScene(1);
-                    }
-                }
-            }
-        }
+        
     }
 }
