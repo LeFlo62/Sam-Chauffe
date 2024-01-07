@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,14 +22,28 @@ namespace SamChauffe
         private Vector3 velocity;
         private Vector3 position;
 
+        private bool grabbed = false;
+
         public void Awake()
         {
             this.objectRigidBody = GetComponent<Rigidbody>();
         }
 
+        public void EnableGrabbed()
+        {
+            grabbed = true;
+            Debug.Log("GRABBED");
+        }
+
+        public void DisableGrabbed()
+        {
+            grabbed = false;
+            Debug.Log("UNGRABBED");
+        }
 
         public void Grab(Transform objectGrabPointTransform)
         {
+            grabbed = true;
             this.velocity = Vector3.zero;
             this.position = objectGrabPointTransform.position;
 
@@ -56,6 +71,7 @@ namespace SamChauffe
 
         public void Drop()
         {
+            grabbed = false;
             objectRigidBody.useGravity = this.useGravity;
             objectRigidBody.drag = this.drag;
             objectRigidBody.AddForce(this.velocity * pickupForce / objectRigidBody.mass, ForceMode.VelocityChange);
@@ -108,6 +124,7 @@ namespace SamChauffe
 
         public void HoverEnter()
         {
+            if(grabbed) { return; }
             if (gameObject.TryGetComponent<Outline>(out Outline outline))
             {
                 outline.enabled = true;
