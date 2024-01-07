@@ -69,8 +69,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 993e22dbcc6da4af0ba0b900eeac66c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flamePrefab: {fileID: 1338890131014278667}
   particleStopTime: 2
   points: 1
+  minDistanceBetweenFlames: 0.5
+  maxRandomOffsetX: 2
+  maxRandomOffsetZ: 2
+  numberOfFlames: 10
 --- !u!1001 &7035660684835878381
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -141,6 +146,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4521404770085940, guid: 89956e675b749204c8e10395ce2b5fb9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198205007009897148, guid: 89956e675b749204c8e10395ce2b5fb9, type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3818908417273379919, guid: 89956e675b749204c8e10395ce2b5fb9, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037788852066987504, guid: 89956e675b749204c8e10395ce2b5fb9, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6794823376781300068, guid: 89956e675b749204c8e10395ce2b5fb9, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7882674405562721163, guid: 89956e675b749204c8e10395ce2b5fb9, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
