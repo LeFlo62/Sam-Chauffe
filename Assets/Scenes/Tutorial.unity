@@ -676,6 +676,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3300000, guid: 58737df6d40bb7442ae753b50a911075, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 1537003193}
+    - target: {fileID: 3300002, guid: 58737df6d40bb7442ae753b50a911075, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 29397195}
+    - target: {fileID: 5519933185632723653, guid: 58737df6d40bb7442ae753b50a911075, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 1537003193}
+    - target: {fileID: 7782847764619760269, guid: 58737df6d40bb7442ae753b50a911075, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 29397195}
     - target: {fileID: 969885777746523839, guid: 5dc5a1b2a78c8e44c819bb40ba97b942, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -736,22 +752,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 9869677}
-    - target: {fileID: 3300000, guid: 58737df6d40bb7442ae753b50a911075, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 1537003193}
-    - target: {fileID: 3300002, guid: 58737df6d40bb7442ae753b50a911075, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 29397195}
-    - target: {fileID: 5519933185632723653, guid: 58737df6d40bb7442ae753b50a911075, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 1537003193}
-    - target: {fileID: 7782847764619760269, guid: 58737df6d40bb7442ae753b50a911075, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 29397195}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2574,8 +2574,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad9496caac4a31549a8d56c59867b57f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flamePrefab: {fileID: 1212776395}
   particleStopTime: 0.5
-  points: 1
+  spreadDelay: 1e+9
+  minDistanceBetweenFlames: 0
+  numberOfFlames: 0
   door: {fileID: 358551777}
 --- !u!1001 &1248759182
 PrefabInstance:

@@ -36,7 +36,10 @@ namespace SamChauffe
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             currentHealth = maxHealth;
-            healthBarController.SetMaxHealth(maxHealth);
+            if (healthBarController)
+            {
+                healthBarController.SetMaxHealth(maxHealth);
+            }
         }
 
         void Update()
@@ -78,16 +81,19 @@ namespace SamChauffe
 
         void OnTriggerEnter(Collider collision)
         {
-            if(collision.gameObject.TryGetComponent<Fire>(out Fire fire))
+            if (healthBarController)
             {
-                currentHealth -= fireDamage;
-                currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-                healthBarController.UpdateHealth(currentHealth);
-                if(currentHealth == 0)
+                if (collision.gameObject.TryGetComponent<Fire>(out Fire fire))
                 {
-                    ScoreManager.score = 0;
-                    // Change scene to score board
-                    SceneManager.LoadScene(1);
+                    currentHealth -= fireDamage;
+                    currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+                    healthBarController.UpdateHealth(currentHealth);
+                    if (currentHealth == 0)
+                    {
+                        ScoreManager.score = 0;
+                        // Change scene to score board
+                        SceneManager.LoadScene(1);
+                    }
                 }
             }
         }

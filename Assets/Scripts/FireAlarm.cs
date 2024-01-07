@@ -12,6 +12,7 @@ namespace SamChauffe
         {
             if (!GlobalVariables.isAlarmRinging)
             {
+                ScoreManager.score += 100;
                 audioSource.Play();
                 GlobalVariables.isAlarmRinging = true;
             }
