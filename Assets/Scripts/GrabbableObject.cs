@@ -50,7 +50,6 @@ namespace SamChauffe
 
         public void Grab(Transform objectGrabPointTransform)
         {
-            grabbed = true;
             this.velocity = Vector3.zero;
             this.position = objectGrabPointTransform.position;
 
