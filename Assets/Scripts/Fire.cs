@@ -8,21 +8,22 @@ namespace SamChauffe
     {
         public GameObject flamePrefab;
         public float particleStopTime = 0.5f;
-        public double points = 1;
         private ParticleSystem fireParticles;
         private bool isStopping = false;
+        private AudioSource audioSource;
         
         // Variables for fire propagation
         private float spreadDelay = 5.0f;
         private float elapsedTime = 0f;
         public float minDistanceBetweenFlames = 2f;
-        private float maxRandomOffsetX = 4f;
-        private float maxRandomOffsetZ = 4f;
-        private int numberOfFlames = 3;
+        private float maxRandomOffsetX = 3f;
+        private float maxRandomOffsetZ = 3f;
+        private int numberOfFlames = 5;
 
         void Start()
         {
             fireParticles = GetComponentInChildren<ParticleSystem>();
+            audioSource = GetComponent<AudioSource>();
         }
 
         void Update()
@@ -111,8 +112,14 @@ namespace SamChauffe
             finalEmissionModule.rateOverTime = 0f;
             fireParticles.Stop();
 
+            Destroy(flamePrefab);
+            // // Stop fire sound
+            // if(audioSource)
+            // {
+            //     audioSource.Stop();
+            // }
             // Manage score after the particule system stops emitting particules
-            ScoreManager.score += points;
+            ScoreManager.score += 10;
             Debug.Log(ScoreManager.score);
         }
     }

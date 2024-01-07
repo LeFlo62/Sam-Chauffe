@@ -17,6 +17,8 @@ namespace SamChauffe
         public void UpdateHealth(int health)
         {
             slider.value = health;
+            ScoreManager.score -= 30;
+            Debug.Log(ScoreManager.score);
         }
     }
 }

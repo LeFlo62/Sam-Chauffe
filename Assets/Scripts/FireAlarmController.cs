@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireAlarmController : MonoBehaviour
+namespace SamChauffe
 {
-    // Start is called before the first frame update
-    void Start()
+    public class FireAlarmController : MonoBehaviour
     {
-        
-    }
+        private AudioSource audioSource;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public void launchAlarm()
+        {
+            if(!GlobalVariables.isAlarmRinging)
+            {
+                audioSource = GetComponent<AudioSource>();
+                audioSource.Play();
+                GlobalVariables.isAlarmRinging = true;
+            }
+        }
     }
 }

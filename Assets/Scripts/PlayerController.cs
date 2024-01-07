@@ -82,15 +82,22 @@ namespace SamChauffe
         void OnTriggerEnter(Collider collision)
         {
             Fire fireScript = collision.gameObject.GetComponent<Fire>();
-            if (fireScript && currentHealth>0)
+            FireAlarmController fireAlarmController = collision.gameObject.GetComponent<FireAlarmController>();
+            
+            if (fireScript && currentHealth>19)
             {
                 currentHealth -= fireDamage;
                 healthBarController.UpdateHealth(currentHealth);
-            }
-            else
+            } 
+            else if(fireScript && currentHealth<20)
             {
+                ScoreManager.score = 0;
+                Debug.Log(ScoreManager.score);
                 // Change scene to score board
-                Debug.Log("Game over...");
+            } 
+            else if (fireAlarmController)
+            {
+                fireAlarmController.launchAlarm();
             }
         }
     }
